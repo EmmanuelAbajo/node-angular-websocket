@@ -1,0 +1,30 @@
+<mat-toolbar class="d-flex justify-content-between">
+    <span>Socket IO</span>
+    <div class="d-flex justify-content-center align-items-center">
+        <button mat-button [matMenuTriggerFor]='menu'>
+            {{ userName }}
+            <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-icon>face</mat-icon>
+        <mat-menu #menu='matMenu'>
+            <button (click)="refresh()" mat-menu-item>Refresh</button>
+        </mat-menu>
+    </div>
+</mat-toolbar>       
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <nav mat-tab-nav-bar>
+                <a mat-tab-link
+                    *ngFor="let link of navLinks"
+                    [routerLink]="link.path"
+                    routerLinkActive #rla="routerLinkActive"
+                    [active]="rla.isActive">
+                    {{link.label}}
+                </a>
+            </nav>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>                  
+
