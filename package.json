@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd server && node app.js",
-    "server": "cd server && nodemon app.js",
+    "start": "cd server && nodemon app.js",
+    "server": "cd server && node app.js",
     "client": "cd client && ng serve",
     "start:dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"

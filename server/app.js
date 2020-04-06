@@ -20,6 +20,19 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 io.on("connection",(socket)=>{
     console.log('User connected');
+    let timer;
+
+    socket.on('start-timer',(msg)=>{
+        timer = setInterval(()=>{
+            socket.emit('timer-update','Start timer: Hello world');
+        },2000);
+        
+    });
+
+    socket.on('stop-timer',(msg)=>{
+        if (timer) clearInterval(timer);
+        socket.emit('timer-update','Stop timer: Bye world');
+    });
 
     socket.on("disconnect",()=>{
         console.log("User disconnected!");
