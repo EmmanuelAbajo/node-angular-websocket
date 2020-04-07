@@ -11,6 +11,15 @@ export class ChatComponent implements OnInit {
   constructor(private socketClient: SocketClientService) { }
 
   ngOnInit(): void {
+    this.socketClient.getMessage().subscribe(
+      (msg: string)=>{
+        console.log(msg);
+      }
+    )
+  }
+
+  send(): void {
+    this.socketClient.sendMessage('Hello world');
   }
 
 }
