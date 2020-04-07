@@ -34,6 +34,10 @@ io.on("connection",(socket)=>{
         socket.emit('timer-update','Stop timer: Bye world');
     });
 
+    socket.on('message',(msg)=>{
+        io.emit('message',msg);
+    })
+
     socket.on("disconnect",()=>{
         console.log("User disconnected!");
     });

@@ -30,6 +30,17 @@ export class SocketClientService {
        });
        return () => this.stopTimer('');
      })
+   }
 
+   sendMessage(message: string): void {
+     this.socket.emit('message',message);
+   }
+
+   getMessage(): Observable<string> {
+     return new Observable((observer)=>{
+       this.socket.on('message',(msg: string)=>{
+          observer.next(msg);
+       });
+     });
    }
 }
