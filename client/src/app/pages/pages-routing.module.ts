@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { ChatComponent } from './chat/chat.component';
 import { TimerComponent } from './timer/timer.component';
 
+
 const routes: Routes = [{ 
   path: '', 
   component: PagesComponent,

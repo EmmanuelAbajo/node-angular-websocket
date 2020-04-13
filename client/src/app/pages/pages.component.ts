@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-pages',
@@ -7,19 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
-  public userName: string = 'User'
+  public userName: string = '';
   public navLinks: {label: string, path: string[]}[] = [
     {label: 'Chat', path: ['/app','chat']},
     {label: 'Timer', path: ['/app','timer']},
   ]
 
   ngOnInit(): void {
+    this.userService.getUserName().subscribe(
+      (name: string)=>{
+        console.log(name)
+        this.userName = name;
+      }
+    )
   }
 
   refresh(): void {
-    alert('Hi user!');
+    alert(`Hi ${this.userName}!`);
   }
 
 }

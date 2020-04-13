@@ -1,0 +1,8 @@
+<mat-form-field class="mr-3">
+    <mat-label>Enter Username</mat-label>
+    <input matInput #username>
+</mat-form-field>
+<div class="d-flex justify-content-between">
+<button mat-stroked-button (click)="setUser(username.value)">Submit</button>
+<button mat-stroked-button (click)="close()" [disabled]="!isDisabled">close</button>
+</div>
