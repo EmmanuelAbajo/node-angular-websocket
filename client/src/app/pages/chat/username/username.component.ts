@@ -18,7 +18,13 @@ export class UsernameComponent implements OnInit {
   }
 
   setUser(name: string) {
-    if (!name) return;
+    if (!name) {
+      alert('Please input username!');
+      return;
+    }else if (name == 'user'){
+      alert('Username already taken!');
+      return;
+    }
     this.isDisabled = true;
     this.userService.setUserName(name); 
   }

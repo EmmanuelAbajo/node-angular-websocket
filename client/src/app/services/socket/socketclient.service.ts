@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class SocketClientService {
 
   private url: string = link.baseAddress;
-  socket: any;
+  private socket: any;
 
   constructor() {
     this.socket = io(this.url);

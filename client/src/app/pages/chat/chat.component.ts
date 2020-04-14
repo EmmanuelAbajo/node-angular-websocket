@@ -24,11 +24,9 @@ export class ChatComponent implements OnInit,OnDestroy {
     private userService: UserService,
     private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {   
     this.userService.getUserName().subscribe(
       (name: string)=>{
-        console.log(name);
         this.user = name;
       }
     );
@@ -40,7 +38,7 @@ export class ChatComponent implements OnInit,OnDestroy {
     this.socketClient.getMessage().pipe(takeUntil(this.unsubscribeSubject)).subscribe(
       (msg: Message)=>{
         if(this.user !== msg.user){
-          this._snackBar.open("New message Added!",'', { duration: 500 });
+          this._snackBar.open("New message Added!",'', { duration: 1000 });
         }
         document.getElementById('msg-container').innerHTML += 
               `<mat-card>
@@ -53,7 +51,7 @@ export class ChatComponent implements OnInit,OnDestroy {
                 </mat-card>`
       }
     )
-  }x
+  }
 
   send(msg: string): void {
     this.message = { user: this.user,message: msg}
