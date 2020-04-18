@@ -19,7 +19,6 @@ export class PagesComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUserName().subscribe(
       (name: string)=>{
-        console.log(name)
         this.userName = name;
       }
     )
@@ -27,6 +26,10 @@ export class PagesComponent implements OnInit {
 
   refresh(): void {
     alert(`Hi ${this.userName}!`);
+  }
+
+  logout(): void {
+    location.reload();
   }
 
 }

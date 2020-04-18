@@ -1,8 +1,14 @@
-<mat-form-field class="mr-3">
-    <mat-label>Enter Username</mat-label>
-    <input matInput #username>
-</mat-form-field>
-<div class="d-flex justify-content-between">
-<button mat-stroked-button (click)="setUser(username.value)">Submit</button>
-<button mat-stroked-button (click)="close()" [disabled]="!isDisabled">close</button>
-</div>
+<form [formGroup]="userNameForm" (ngSubmit)="setUser()">
+    <mat-form-field class="mr-3">
+        <mat-label>Enter Username</mat-label>
+        <input matInput formControlName="userNameField" required>
+    </mat-form-field>
+    <mat-error *ngIf="userNameForm.get('userNameField').hasError('required')">Username is required</mat-error>
+    <mat-error *ngIf="userNameForm.get('userNameField').hasError('minlength')">Min length is 5</mat-error>
+    <mat-error *ngIf="userNameForm.get('userNameField').hasError('maxlength')">Max length is 20</mat-error>
+    <div class="d-flex justify-content-between">
+    <button type="submit" mat-stroked-button>Submit</button>
+    <button type="button" mat-stroked-button (click)="close()" [disabled]="!isDisabled">close</button>
+    </div>
+</form>
+

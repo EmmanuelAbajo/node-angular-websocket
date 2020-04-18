@@ -16,11 +16,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsernameComponent } from './chat/username/username.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PagesComponent, ChatComponent, TimerComponent, UsernameComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     PagesRoutingModule,
     MatToolbarModule,
     MatTabsModule,

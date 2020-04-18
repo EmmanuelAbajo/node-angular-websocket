@@ -1,9 +1,11 @@
 <div class="mt-3">
-    <mat-form-field class="mr-3" style="width: 70%;">
-        <mat-label>Enter message</mat-label>
-        <input matInput #message>
-    </mat-form-field>
-    <button mat-stroked-button (click)="send(message.value)">Send</button>
+    <form [formGroup]="msgForm" (ngSubmit)="send(msgForm.value)">
+        <mat-form-field class="mr-3" style="width: 70%;">
+            <mat-label>Enter message</mat-label>
+            <input formControlName="messageField" matInput>
+        </mat-form-field>
+        <button type="submit" mat-stroked-button>Send</button>
+    </form>    
 </div>
 <div id="msg-container">
     <!-- <mat-card>

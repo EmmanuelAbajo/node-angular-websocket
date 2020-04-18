@@ -7,6 +7,7 @@ import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { UsernameComponent } from './username/username.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
@@ -15,6 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ChatComponent implements OnInit,OnDestroy {
 
+  public msgForm: FormGroup;
   private user: string;
   private message: Message;
   private unsubscribeSubject: Subject<void> = new Subject<void>();
@@ -25,6 +27,10 @@ export class ChatComponent implements OnInit,OnDestroy {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {   
+    this.msgForm = new FormGroup({
+      messageField: new FormControl('')
+    });
+    
     this.userService.getUserName().subscribe(
       (name: string)=>{
         this.user = name;
@@ -53,8 +59,8 @@ export class ChatComponent implements OnInit,OnDestroy {
     )
   }
 
-  send(msg: string): void {
-    this.message = { user: this.user,message: msg}
+  send(msg: any): void {
+    this.message = { user: this.user,message: msg.messageField}
     this.socketClient.sendMessage(this.message);
   }
 
