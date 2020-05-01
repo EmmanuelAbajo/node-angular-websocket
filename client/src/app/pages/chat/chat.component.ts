@@ -14,39 +14,39 @@ import { FormGroup, FormControl } from '@angular/forms';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit,OnDestroy {
+export class ChatComponent implements OnInit, OnDestroy {
 
   public msgForm: FormGroup;
   private user: string;
   private message: Message;
   private unsubscribeSubject: Subject<void> = new Subject<void>();
 
-  constructor(private _snackBar: MatSnackBar,
-    private socketClient: SocketClientService,
-    private userService: UserService,
-    private dialog: MatDialog) { }
+  constructor(private snackBar: MatSnackBar,
+              private socketClient: SocketClientService,
+              private userService: UserService,
+              private dialog: MatDialog) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.msgForm = new FormGroup({
       messageField: new FormControl('')
     });
-    
+
     this.userService.getUserName().subscribe(
-      (name: string)=>{
+      (name: string) => {
         this.user = name;
       }
     );
 
-    if (this.user == 'user'){
+    if (this.user === 'user'){
       this.openDialog();
     }
 
     this.socketClient.getMessage().pipe(takeUntil(this.unsubscribeSubject)).subscribe(
-      (msg: Message)=>{
-        if(this.user !== msg.user){
-          this._snackBar.open("New message Added!",'', { duration: 1000 });
+      (msg: Message) => {
+        if (this.user !== msg.user){
+          this.snackBar.open('New message Added!', '', { duration: 1000 });
         }
-        document.getElementById('msg-container').innerHTML += 
+        document.getElementById('msg-container').innerHTML +=
               `<mat-card>
                   <mat-card-header>
                     <mat-card-title>Message from: ${msg.user}</mat-card-title>
@@ -54,13 +54,13 @@ export class ChatComponent implements OnInit,OnDestroy {
                   <mat-card-content>
                     <p>${msg.message}</p>
                   </mat-card-content>
-                </mat-card>`
+                </mat-card>`;
       }
-    )
+    );
   }
 
   send(msg: any): void {
-    this.message = { user: this.user,message: msg.messageField}
+    this.message = { user: this.user, message: msg.messageField};
     this.socketClient.sendMessage(this.message);
   }
 
@@ -68,12 +68,12 @@ export class ChatComponent implements OnInit,OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
 
-    const dialogRef = this.dialog.open(UsernameComponent,dialogConfig);
+    const dialogRef = this.dialog.open(UsernameComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe( _ => {
-      this._snackBar.open("Welcome to chats!",this.user, { duration: 1000 });
+      this.snackBar.open('Welcome to chats!', this.user, { duration: 1000 });
     });
-    
+
   }
 
   ngOnDestroy(): void {
@@ -81,5 +81,4 @@ export class ChatComponent implements OnInit,OnDestroy {
     this.unsubscribeSubject.complete();
   }
 
-  
 }

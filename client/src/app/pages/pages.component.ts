@@ -10,18 +10,18 @@ export class PagesComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  public userName: string = '';
+  public userName = '';
   public navLinks: {label: string, path: string[]}[] = [
-    {label: 'Chat', path: ['/app','chat']},
-    {label: 'Timer', path: ['/app','timer']},
-  ]
+    {label: 'Chat', path: ['/app', 'chat']},
+    {label: 'Timer', path: ['/app', 'timer']},
+  ];
 
   ngOnInit(): void {
     this.userService.getUserName().subscribe(
-      (name: string)=>{
+      (name: string) => {
         this.userName = name;
       }
-    )
+    );
   }
 
   refresh(): void {
