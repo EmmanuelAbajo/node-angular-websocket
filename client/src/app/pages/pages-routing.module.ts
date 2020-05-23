@@ -6,14 +6,14 @@ import { ChatComponent } from './chat/chat.component';
 import { TimerComponent } from './timer/timer.component';
 
 
-const routes: Routes = [{ 
-  path: '', 
+const routes: Routes = [{
+  path: '',
   component: PagesComponent,
   children: [
-    { path: '',redirectTo: 'chat',pathMatch: 'full'},
+    { path: '', redirectTo: 'chat', pathMatch: 'full'},
     { path: 'chat', component: ChatComponent},
     { path: 'timer', component: TimerComponent}
-] 
+]
 }];
 
 @NgModule({
