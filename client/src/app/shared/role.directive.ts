@@ -1,5 +1,5 @@
-import { Directive, TemplateRef, ViewContainerRef, Input, OnInit } from '@angular/core';
-import { UserService } from './services/user/user.service';
+import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
+import { UserService } from '../services/user/user.service';
 
 
 /**
@@ -15,8 +15,8 @@ import { UserService } from './services/user/user.service';
 @Directive({
   selector: '[appUserRole]'
 })
-export class RoleDirective implements OnInit {
-    @Input() appUserRole: string | string[];
+export class RoleDirective {
+
     private roles: Array<string> = [];
     private userRoles: Array<string> = [];
 
@@ -26,11 +26,11 @@ export class RoleDirective implements OnInit {
         ) { }
 
 
-    ngOnInit(): void {
-        this.roles = typeof this.appUserRole === 'string' ? [this.appUserRole] : this.appUserRole;
+    @Input()
+    set appUserRole(value: string | string[]) {
+        this.roles = typeof value === 'string' ? [value] : value;
         this.updateView();
     }
-
 
     private updateView(): void {
         const userData = this.userService.getUserInfo();
@@ -38,9 +38,10 @@ export class RoleDirective implements OnInit {
 
         const hasAuthority = this.checkRole(this.roles, this.userRoles);
         console.log('Has authority::: ' + hasAuthority);
-        this.viewContainerRef.clear();
         if (hasAuthority) {
          this.viewContainerRef.createEmbeddedView(this.templateRef);
+        } else {
+            this.viewContainerRef.clear();
         }
       }
 

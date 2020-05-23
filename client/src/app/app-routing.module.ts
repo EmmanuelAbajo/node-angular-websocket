@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'app', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)},
-  {path: '',redirectTo: 'app',pathMatch: 'full'},
-  { path: '**',redirectTo: 'app'}
+  {path: '', redirectTo: 'app', pathMatch: 'full'},
+  { path: '**', redirectTo: 'app'}
 ];
 
 @NgModule({

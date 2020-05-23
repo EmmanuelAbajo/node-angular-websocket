@@ -17,9 +17,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UsernameComponent } from './chat/username/username.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HighlightDirective } from '../shared/highlight.directive';
 
 @NgModule({
-  declarations: [PagesComponent, ChatComponent, TimerComponent, UsernameComponent],
+  declarations: [PagesComponent,
+                ChatComponent,
+                TimerComponent,
+                UsernameComponent,
+                HighlightDirective, ],
   imports: [
     CommonModule,
     FormsModule,
