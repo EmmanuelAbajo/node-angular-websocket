@@ -38,10 +38,9 @@ export class RoleDirective {
 
         const hasAuthority = this.checkRole(this.roles, this.userRoles);
         console.log('Has authority::: ' + hasAuthority);
+        this.viewContainerRef.clear();
         if (hasAuthority) {
          this.viewContainerRef.createEmbeddedView(this.templateRef);
-        } else {
-            this.viewContainerRef.clear();
         }
       }
 
