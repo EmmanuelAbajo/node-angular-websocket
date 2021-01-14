@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: true}));
 
 io.on("connection",(socket)=>{
     console.log('User connected');
-    let timer;
+    let timer: any;
 
     socket.on('start-timer',(msg)=>{
         timer = setInterval(()=>{
