@@ -1,11 +1,10 @@
-const express = require('express');
-const http = require('http');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const socketIO = require('socket.io');
+import * as express from 'express';
+import * as http from 'http';
+import * as cors from 'cors';
+import * as socketIO from 'socket.io';
 
 const app = express();
-const server = http.Server(app);
+const server = new http.Server(app);
 const io = socketIO(server);
 const port = process.env.PORT || 3000;
 
@@ -15,8 +14,8 @@ let corsOptions = {
 }
 
 app.use(cors(corsOptions)); 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 io.on("connection",(socket)=>{
     console.log('User connected');
