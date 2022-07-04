@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Testing review component</h1>
+            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Est distinctio odio fugit 
+                nisi expedita velit vitae provident voluptatem illum facere sint cumque, architecto 
+                sapiente tempora incidunt autem dolore earum? Velit?
+            </p>
+           <div class="d-flex">
+                <button class="btn btn-primary mr-2" (click)="loadPage('1')">First page</button>
+                <button class="btn btn-success mx-2" (click)="loadPage('2')">Second page</button>
+                <button class="btn btn-danger ml-2" (click)="loadPage('3')">Last page</button>
+           </div>
+        </div>
+        <div class="p-3 m-2">
+            <app-header></app-header>
+            <router-outlet></router-outlet>
+            <app-footer [message]="message"></app-footer>
+        </div>
+    </div>
+</div>
+
+

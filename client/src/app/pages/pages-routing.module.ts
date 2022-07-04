@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { ChatComponent } from './chat/chat.component';
 import { TimerComponent } from './timer/timer.component';
+import { AuditComponent } from './audit/audit.component';
 
 
 const routes: Routes = [{
@@ -12,7 +13,12 @@ const routes: Routes = [{
   children: [
     { path: '', redirectTo: 'chat', pathMatch: 'full'},
     { path: 'chat', component: ChatComponent},
-    { path: 'timer', component: TimerComponent}
+    { path: 'timer', component: TimerComponent},
+    { path: 'audit', component: AuditComponent},
+    {
+      path: 'review',
+      loadChildren: () => import('./review/review.module').then(m => m.ReviewModule),
+    },
 ]
 }];
 

@@ -14,6 +14,8 @@ export class PagesComponent implements OnInit {
   public navLinks: {label: string, path: string[]}[] = [
     {label: 'Chat', path: ['/app', 'chat']},
     {label: 'Timer', path: ['/app', 'timer']},
+    {label: 'Audit', path: ['/app', 'audit']},
+    {label: 'Review', path: ['/app', 'review']},
   ];
 
   ngOnInit(): void {
